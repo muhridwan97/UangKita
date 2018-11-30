@@ -11,7 +11,7 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardView2"
-        android:layout_width="178dp"
+        android:layout_width="0dp"
         android:layout_height="72dp"
         android:layout_margin="8dp"
         android:layout_marginTop="8dp"
@@ -22,6 +22,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/textViewp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
@@ -41,7 +42,7 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="178dp"
+        android:layout_width="0dp"
         android:layout_height="72dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -168,5 +169,6 @@
         android:text="Save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText3" />
+
 
 </android.support.constraint.ConstraintLayout>
