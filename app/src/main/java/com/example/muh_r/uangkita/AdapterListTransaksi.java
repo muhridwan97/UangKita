@@ -28,7 +28,7 @@ public class AdapterListTransaksi extends RecyclerView.Adapter <AdapterListTrans
     @NonNull
     @Override
     public AdapterListTransaksi.TransaksiViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.activity_item_kontak, parent, false);
+        View itemView = mInflater.inflate(R.layout.activity_item_list_transaksi, parent, false);
         return new TransaksiViewHolder(itemView, this);
 
     }
@@ -48,14 +48,14 @@ public class AdapterListTransaksi extends RecyclerView.Adapter <AdapterListTrans
         return transaksi.size();
     }
 
-    class TransaksiViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
+    class TransaksiViewHolder extends RecyclerView.ViewHolder   {
         TextView pengeluaran_textView, pemasukan_textView, tanggal_textView;
         AdapterListTransaksi mAdapter;
         public TransaksiViewHolder(View itemView, AdapterListTransaksi adapter) {
             super(itemView);
-            pengeluaran_textView = (TextView) itemView.findViewById(R.id.ID_NAMA);
-            pemasukan_textView = (TextView) itemView.findViewById(R.id.ID_NAMA);
-            tanggal_textView = (TextView) itemView.findViewById(R.id.ID_TELEPON);
+            pengeluaran_textView = (TextView) itemView.findViewById(R.id.pengeluaran);
+            pemasukan_textView = (TextView) itemView.findViewById(R.id.pemasukan);
+            tanggal_textView = (TextView) itemView.findViewById(R.id.tanggal);
             this.mAdapter = adapter;
             //telepon_textView.setOnClickListener(this);
 
