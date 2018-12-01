@@ -10,12 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -38,9 +39,11 @@ public class Add extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private TextView _tv_date, _tv_total_transactions;
+    private Date dateTime;
+    private TextView _tv_date, _tv_total_transactions, _tv_descriptions;
     private Spinner _cmb_transaction;
     private Spinner _cmb_category;
+    private Button _btn_save;
 
     private OnFragmentInteractionListener mListener;
 
@@ -80,9 +83,13 @@ public class Add extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_add, container, false);
+        _btn_save = rootView.findViewById(R.id._btn_save);
+        _tv_total_transactions = rootView.findViewById(R.id._tv_total_transactions);
+        _tv_descriptions = rootView.findViewById(R.id._tv_descriptions);
 
         combobox(rootView);
         datePicker(rootView);
+        save();
         return rootView;
     }
 
@@ -137,33 +144,36 @@ public class Add extends Fragment {
         final Calendar myCalendar = Calendar.getInstance();
 
         _tv_date= view.findViewById(R.id._tv_date);
-        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+        final DatePickerDialog.OnDateSetListener date = (view1, year, monthOfYear, dayOfMonth) -> {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                  int dayOfMonth) {
-                // TODO Auto-generated method stub
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, monthOfYear);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            String myFormat = "dd-MM-yyyy kk:mm:ss"; //In which you need put here
+            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-                String myFormat = "MM/dd/yy"; //In which you need put here
-                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-
-                _tv_date.setText(sdf.format(myCalendar.getTime()));
-            }
+            dateTime = myCalendar.getTime();
+            _tv_date.setText(sdf.format(dateTime));
 
         };
         final FragmentActivity activity = this.getActivity();
-        _tv_date.setOnClickListener(new View.OnClickListener() {
+        _tv_date.setOnClickListener(v -> {
+            // TODO Auto-generated method stub
+            new DatePickerDialog(activity, date, myCalendar
+                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+        });
+    }
 
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                new DatePickerDialog(activity, date, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            }
+    private void save(){
+        _btn_save.setOnClickListener(event -> {
+            String jenis = _cmb_transaction.getSelectedItem().toString();
+            String kategori = _cmb_category.getSelectedItem().toString();
+            String jumlah = _tv_total_transactions.getText().toString();
+            String deskripsi = _tv_descriptions.getText().toString();
+
+            DataModel.getInstance().setListOfTransactions(dateTime, jenis,kategori,jumlah,deskripsi);
+            DataModel.getInstance().debug();
         });
     }
 }
