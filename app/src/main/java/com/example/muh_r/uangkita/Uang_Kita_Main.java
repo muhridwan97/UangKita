@@ -23,6 +23,7 @@ public class Uang_Kita_Main extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     //mTextMessage.setText(R.string.title_home);
+                    fm.beginTransaction().replace(R.id.placeholder, new Home()).commit();
                     return true;
                 case R.id.navigation_add_transactions:
                     fm.beginTransaction().replace(R.id.placeholder, new Add()).commit();
