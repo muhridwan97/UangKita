@@ -16,6 +16,7 @@
         android:layout_margin="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:background="@color/bakcground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/cardView"
@@ -28,6 +29,7 @@
             android:padding="8dp"
             android:text="Pengeluaran"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textColor="@color/custom_text"
             android:textSize="14sp" />
 
         <TextView
@@ -37,7 +39,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="25dp"
             android:text="IDR 867,531"
-            android:textAppearance="@android:style/TextAppearance.Material.Headline" />
+            android:textAppearance="@android:style/TextAppearance.Material.Headline"
+            android:textColor="@android:color/holo_red_light" />
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
@@ -58,6 +61,7 @@
             android:padding="8dp"
             android:text="Pemasukan"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textColor="@color/custom_text"
             android:textSize="14sp" />
 
         <TextView
@@ -67,42 +71,48 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="25dp"
             android:text="IDR 1,567,989"
-            android:textAppearance="@android:style/TextAppearance.Material.Headline" />
+            android:textAppearance="@android:style/TextAppearance.Material.Headline"
+            android:textColor="#2EBA8D" />
     </android.support.v7.widget.CardView>
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/_tv_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
+        android:clickable="true"
+        android:editable="false"
         android:ems="10"
-        android:hint="Tanggal"
-        android:inputType="time"
+        android:inputType="date"
+        android:singleLine="true"
+        android:textColorLink="#49A7E3"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <Spinner
-        android:id="@+id/cmb_transactions"
+        android:id="@+id/_cmb_transactions"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <Spinner
-        android:id="@+id/cmb_category"
+        android:id="@+id/_cmb_category"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -116,8 +126,21 @@
         android:layout_marginTop="16dp"
         android:text="Transactions"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textColor="#334D5B"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/_tv_date" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="16dp"
+        android:text="Date"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textColor="#334D5B"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <TextView
         android:id="@+id/textView7"
@@ -127,37 +150,63 @@
         android:layout_marginTop="16dp"
         android:text="Category Transactions"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textColor="#334D5B"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cmb_transactions" />
+        app:layout_constraintTop_toBottomOf="@+id/_cmb_transactions" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="8dp"
+        android:text="Total Transactions"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textColor="#334D5B"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/_cmb_category" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="8dp"
+        android:text="Descriptions"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textColor="#334D5B"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/_tv_total_transactions" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/_tv_total_transactions"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:hint="Total Transactions"
         android:inputType="number"
+        android:singleLine="true"
+        android:textColorLink="#49A7E3"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cmb_category" />
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <EditText
         android:id="@+id/editText3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:hint="Descriptions"
         android:inputType="text"
-        android:text="Descriptions"
+        android:singleLine="true"
+        android:textColorLink="#49A7E3"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <Button
         android:id="@+id/button"

@@ -1,12 +1,26 @@
 package com.example.muh_r.uangkita;
 
-import android.content.Context;
+import android.app.DatePickerDialog;
+import android.icu.text.DecimalFormat;
+import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.Spinner;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
 
 
 /**
@@ -26,6 +40,10 @@ public class Add extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private TextView _tv_date, _tv_total_transactions;
+    private Spinner _cmb_transaction;
+    private Spinner _cmb_category;
 
     private OnFragmentInteractionListener mListener;
 
@@ -49,6 +67,7 @@ public class Add extends Fragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+
     }
 
     @Override
@@ -63,8 +82,11 @@ public class Add extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_add, container, false);
+
+        combobox(rootView);
+        datePicker(rootView);
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -88,5 +110,63 @@ public class Add extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    // TODO: Update list
+    private void combobox(View view){
+        _cmb_transaction = (Spinner) view.findViewById(R.id._cmb_transactions);
+        _cmb_category = (Spinner) view.findViewById(R.id._cmb_category);
+
+        List<String> transactions = new ArrayList<String>();
+        transactions.add("Expense");
+        transactions.add("Income");
+
+        List<String> categories = new ArrayList<String>();
+        categories.add("Food");
+        categories.add("Drink");
+
+        ArrayAdapter<String> dataTransaction = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, transactions);
+        ArrayAdapter<String> dataCategory = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, categories);
+
+        dataTransaction.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dataCategory.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        _cmb_transaction.setAdapter(dataTransaction);
+        _cmb_category.setAdapter(dataCategory);
+    }
+
+    private void datePicker (View view){
+        final Calendar myCalendar = Calendar.getInstance();
+
+        _tv_date= view.findViewById(R.id._tv_date);
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                String myFormat = "MM/dd/yy"; //In which you need put here
+                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+                _tv_date.setText(sdf.format(myCalendar.getTime()));
+            }
+
+        };
+        final FragmentActivity activity = this.getActivity();
+        _tv_date.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(activity, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
     }
 }

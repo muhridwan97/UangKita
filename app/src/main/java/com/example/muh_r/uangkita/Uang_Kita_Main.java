@@ -31,6 +31,8 @@ public class Uang_Kita_Main extends AppCompatActivity {
                     return true;
                 case R.id.navigation_notifications:
                    // mTextMessage.setText(R.string.title_notifications);
+                    FragmentManager fm2 = getSupportFragmentManager();
+                    fm2.beginTransaction().replace(R.id.placeholder, new FragmentListTransaksi()).commit();
                     return true;
             }
             return false;

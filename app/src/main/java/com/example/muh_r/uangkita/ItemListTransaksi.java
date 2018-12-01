@@ -1,0 +1,13 @@
+package com.example.muh_r.uangkita;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+public class ItemListTransaksi extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_item_list_transaksi);
+    }
+}
