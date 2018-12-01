@@ -19,18 +19,16 @@ public class Uang_Kita_Main extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            FragmentManager fm = getSupportFragmentManager();
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     //mTextMessage.setText(R.string.title_home);
                     return true;
-                case R.id.navigation_dashboard:
-                   /// mTextMessage.setText(R.string.title_dashboard);
-                    FragmentManager fm = getSupportFragmentManager();
+                case R.id.navigation_add_transactions:
                     fm.beginTransaction().replace(R.id.placeholder, new Add()).commit();
-
                     return true;
-                case R.id.navigation_notifications:
-                   // mTextMessage.setText(R.string.title_notifications);
+                case R.id.navigation_list_transactions:
+                    fm.beginTransaction().replace(R.id.placeholder, new FragmentListTransaksi()).commit();
                     return true;
             }
             return false;
