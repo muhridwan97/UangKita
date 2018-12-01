@@ -30,7 +30,7 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="50dp"
+        android:layout_width="55dp"
         android:layout_height="50dp"
         android:layout_marginStart="2dp"
         android:layout_marginTop="2dp"
@@ -42,7 +42,7 @@
 
     <TextView
         android:id="@+id/tanggal"
-        android:layout_width="45dp"
+        android:layout_width="50dp"
         android:layout_height="20dp"
         android:text="12 DES"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -73,6 +73,15 @@
         app:layout_constraintStart_toEndOf="@+id/textPemasukan"
         app:layout_constraintTop_toBottomOf="@+id/pengeluaran" />
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/next" />
 
 
 </android.support.constraint.ConstraintLayout>
