@@ -86,8 +86,10 @@
         android:ems="10"
         android:inputType="date"
         android:singleLine="true"
+        android:textColor="@color/custom_text"
         android:textColorLink="#49A7E3"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
@@ -124,7 +126,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
         android:layout_marginTop="16dp"
-        android:text="Transactions"
+        android:text="Jenis Transaksi"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         android:textColor="#334D5B"
         app:layout_constraintStart_toStartOf="parent"
@@ -136,7 +138,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
         android:layout_marginTop="16dp"
-        android:text="Date"
+        android:text="Tanggal"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         android:textColor="#334D5B"
         app:layout_constraintStart_toStartOf="parent"
@@ -148,7 +150,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
         android:layout_marginTop="16dp"
-        android:text="Category Transactions"
+        android:text="Kategori Transaksi"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         android:textColor="#334D5B"
         app:layout_constraintStart_toStartOf="parent"
@@ -160,7 +162,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
         android:layout_marginTop="8dp"
-        android:text="Total Transactions"
+        android:text="Jumlah Transaksi"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         android:textColor="#334D5B"
         app:layout_constraintStart_toStartOf="parent"
@@ -172,7 +174,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
         android:layout_marginTop="8dp"
-        android:text="Descriptions"
+        android:text="Deskripsi"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         android:textColor="#334D5B"
         app:layout_constraintStart_toStartOf="parent"
@@ -187,14 +189,16 @@
         android:ems="10"
         android:inputType="number"
         android:singleLine="true"
+        android:textColor="@color/custom_text"
         android:textColorLink="#49A7E3"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/_tv_descriptions"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -202,6 +206,7 @@
         android:ems="10"
         android:inputType="text"
         android:singleLine="true"
+        android:textColor="@color/custom_text"
         android:textColorLink="#49A7E3"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -209,7 +214,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/_btn_save"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -217,7 +222,7 @@
         android:layout_marginEnd="8dp"
         android:text="Save"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/_tv_descriptions" />
 
 
 </android.support.constraint.ConstraintLayout>
