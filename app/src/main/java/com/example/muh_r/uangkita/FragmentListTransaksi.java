@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentListTransaksi extends Fragment {
+public class FragmentListTransaksi extends Fragment implements View.OnClickListener {
 
-
+    View view;
     public FragmentListTransaksi() {
         // Required empty public constructor
     }
@@ -23,7 +23,13 @@ public class FragmentListTransaksi extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_transaksi, container, false);
+        view = inflater.inflate(R.layout.fragment_list_transaksi, container, false);
+
+        return view;
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }
