@@ -6,20 +6,31 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class AdapterListTransaksiDay extends RecyclerView.Adapter <AdapterListTransaksiDay.TransaksiViewHolder> {
     LayoutInflater mInflater;
     ArrayList<Transaksi> transaksi;
     Context _context;
+    private IHost iHost;
+
 
     //konstruktor
     public AdapterListTransaksiDay(Context context, ArrayList<Transaksi> transaksi) {
         this.mInflater = LayoutInflater.from(context);
         this.transaksi = transaksi;
         this._context = context;
+    }
+
+    public AdapterListTransaksiDay(Context context, ArrayList<Transaksi> transaksi, IHost iHost) {
+        this.mInflater = LayoutInflater.from(context);
+        this.transaksi = transaksi;
+        this._context = context;
+        this.iHost = iHost;
     }
 
     @NonNull
@@ -38,6 +49,10 @@ public class AdapterListTransaksiDay extends RecyclerView.Adapter <AdapterListTr
         holder.pemasukan_textView.setText(current.pemasukan);
         holder.tanggal_textView.setText(current.tanggal);
 
+        holder.arrow.setOnClickListener(even-> {
+            iHost.openDetailBasedOnDate(Calendar.getInstance().getTime());
+        });
+
     }
 
     @Override
@@ -47,12 +62,15 @@ public class AdapterListTransaksiDay extends RecyclerView.Adapter <AdapterListTr
 
     class TransaksiViewHolder extends RecyclerView.ViewHolder   {
         TextView pengeluaran_textView, pemasukan_textView, tanggal_textView;
+        ImageView arrow;
         AdapterListTransaksiDay mAdapter;
         public TransaksiViewHolder(View itemView, AdapterListTransaksiDay adapter) {
             super(itemView);
             pengeluaran_textView = (TextView) itemView.findViewById(R.id.pengeluaran);
             pemasukan_textView = (TextView) itemView.findViewById(R.id.pemasukan);
             tanggal_textView = (TextView) itemView.findViewById(R.id.tanggal);
+            arrow = itemView.findViewById(R.id._iv_details);
+
             this.mAdapter = adapter;
             //telepon_textView.setOnClickListener(this);
 

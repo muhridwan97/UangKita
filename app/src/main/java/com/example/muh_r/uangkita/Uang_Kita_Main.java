@@ -49,6 +49,14 @@ public class Uang_Kita_Main extends AppCompatActivity implements IHost{
     }
 
     @Override
+    public void openDetailBasedOnDate(Date date) {
+        System.out.println(date);
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentListTransaksi fragment2 = FragmentListTransaksi.getInstance();
+        fm.beginTransaction().replace(R.id.placeholder, fragment2).commit();
+    }
+
+    @Override
     public void sendData(Date tangga_transaksil, String jenis_transaksi, String kategori_transaksi, String jumlah_transaksi, String deskripsi) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentListTransaksi fragment2 = FragmentListTransaksi.newInstance(tangga_transaksil, jenis_transaksi,  kategori_transaksi,  jumlah_transaksi,  deskripsi);
