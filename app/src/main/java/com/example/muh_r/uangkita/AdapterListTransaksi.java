@@ -36,11 +36,12 @@ public class AdapterListTransaksi extends RecyclerView.Adapter <AdapterListTrans
     @Override
     public void onBindViewHolder(@NonNull AdapterListTransaksi.TransaksiViewHolder holder, int position) {
         Transaksi current = transaksi.get(position);
-        // Add the data to the view
-        holder.pengeluaran_textView.setText(current.pengeluaran);
-        holder.pemasukan_textView.setText(current.pemasukan);
-        holder.tanggal_textView.setText(current.tanggal);
-
+        if(current.tangga_transaksil != null) {
+            holder._tv_tanggal.setText(current.tangga_transaksil.toString());
+            holder._tv_kategori.setText(current.kategori_transaksi);
+            holder._tv_deskripsi.setText(current.deskripsi);
+            holder._tv_jumlah.setText(current.jumlah_transaksi);
+        }
     }
 
     @Override
@@ -49,27 +50,18 @@ public class AdapterListTransaksi extends RecyclerView.Adapter <AdapterListTrans
     }
 
     class TransaksiViewHolder extends RecyclerView.ViewHolder   {
-        TextView pengeluaran_textView, pemasukan_textView, tanggal_textView;
         AdapterListTransaksi mAdapter;
+        TextView _tv_jumlah, _tv_kategori, _tv_tanggal, _tv_deskripsi;
         public TransaksiViewHolder(View itemView, AdapterListTransaksi adapter) {
             super(itemView);
-            pengeluaran_textView = (TextView) itemView.findViewById(R.id.pengeluaran);
-            pemasukan_textView = (TextView) itemView.findViewById(R.id.pemasukan);
-            tanggal_textView = (TextView) itemView.findViewById(R.id.tanggal);
+
+            _tv_tanggal = itemView.findViewById(R.id._tv_tanggal);
+            _tv_kategori = itemView.findViewById(R.id._tv_kategori);
+            _tv_deskripsi = itemView.findViewById(R.id._tv_deskripsi);
+            _tv_jumlah = itemView.findViewById(R.id._tv_jumlah);
+
             this.mAdapter = adapter;
-            //telepon_textView.setOnClickListener(this);
-
         }
-
-//        @Override
-//        public void onClick(View v) {
-//            if (v.getId() == R.id.ID_TELEPON) {
-//                Log.d("click", "onClick: " + telepon_textView.getText());
-//                Intent intent = new Intent(Intent.ACTION_DIAL);
-//                intent.setData(Uri.parse("tel:"+telepon_textView.getText().toString()));
-//                _context.startActivity(intent);
-//            }
-//        }
     }
 }
 
