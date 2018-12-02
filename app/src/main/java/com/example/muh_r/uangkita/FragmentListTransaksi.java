@@ -8,10 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 
@@ -20,7 +17,7 @@ import java.util.Date;
  */
 public class FragmentListTransaksi extends Fragment implements View.OnClickListener {
     RecyclerView mRecyclerView;
-    AdapterListTransaksi mAdapter;
+    AdapterListTransaksiDay mAdapter;
 
     public Date tanggal_transaksi;
     public String jenis_transaksi;
@@ -78,7 +75,7 @@ public class FragmentListTransaksi extends Fragment implements View.OnClickListe
         }
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
-        mAdapter = new AdapterListTransaksi(view.getContext(), DataModel.getInstance().getListOfTransaction());
+        mAdapter = new AdapterListTransaksiDay(view.getContext(), DataModel.getInstance().getListOfTransaction());
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         return view;

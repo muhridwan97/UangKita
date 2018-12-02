@@ -30,7 +30,7 @@ public class Uang_Kita_Main extends AppCompatActivity implements IHost{
                     fm.beginTransaction().replace(R.id.placeholder, new Add()).commit();
                     return true;
                 case R.id.navigation_list_transactions:
-                    fm.beginTransaction().replace(R.id.placeholder, FragmentListTransaksi.getInstance()).commit();
+                    fm.beginTransaction().replace(R.id.placeholder, new FragementListTransaksiDay()).commit();
                     return true;
             }
             return false;
