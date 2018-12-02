@@ -11,8 +11,7 @@ import java.util.Map;
 public class DataModel {
     private static DataModel instance;
     private DataModel(){}
-
-    private Map<Date, List<String>> listOfTransactions = new HashMap<>();
+    private ArrayList<Transaksi> listOfTransaction = new ArrayList<>();
 
     public static synchronized DataModel getInstance() {
         if (instance == null) {
@@ -21,22 +20,11 @@ public class DataModel {
         return instance;
     }
 
-    public void setListOfTransactions(Date tanggal, String jenis_transaksi, String kategori_transaksi, String jumlah_transaksi, String deskripsi){
-        List<String> classAttribute = new ArrayList<>();
-        classAttribute.add(jenis_transaksi);
-        classAttribute.add(kategori_transaksi);
-        classAttribute.add(jumlah_transaksi);
-        classAttribute.add(deskripsi);
-        listOfTransactions.put(tanggal, classAttribute);
+    public void setListOfTransaction(Transaksi transaction){
+        listOfTransaction.add(transaction);
+    }
+    public ArrayList<Transaksi> getListOfTransaction (){
+        return listOfTransaction;
     }
 
-    public void debug(){
-        for (Map.Entry<Date, List<String>> transaction : listOfTransactions.entrySet()) {
-            for (String tr : transaction.getValue()) {
-                System.out.println(tr);
-            }
-        }
-        listOfTransactions.clear();
-
-    }
 }

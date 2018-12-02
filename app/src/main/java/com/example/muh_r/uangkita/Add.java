@@ -34,6 +34,7 @@ public class Add extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private IHost iHost;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -86,6 +87,8 @@ public class Add extends Fragment {
         _btn_save = rootView.findViewById(R.id._btn_save);
         _tv_total_transactions = rootView.findViewById(R.id._tv_total_transactions);
         _tv_descriptions = rootView.findViewById(R.id._tv_descriptions);
+
+        iHost = (IHost) getActivity();
 
         combobox(rootView);
         datePicker(rootView);
@@ -171,9 +174,7 @@ public class Add extends Fragment {
             String kategori = _cmb_category.getSelectedItem().toString();
             String jumlah = _tv_total_transactions.getText().toString();
             String deskripsi = _tv_descriptions.getText().toString();
-
-            DataModel.getInstance().setListOfTransactions(dateTime, jenis,kategori,jumlah,deskripsi);
-            DataModel.getInstance().debug();
+            iHost.sendData(dateTime, jenis, kategori,jumlah, deskripsi);
         });
     }
 }

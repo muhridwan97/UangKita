@@ -6,11 +6,11 @@ public class Transaksi {
     public String pengeluaran,pemasukan;
     public String tanggal;
 
-    private Date tangga_transaksil;
-    private String jenis_transaksi;
-    private String kategori_transaksi;
-    private String jumlah_transaksi;
-    private String deskripsi;
+    public Date tangga_transaksil;
+    public String jenis_transaksi;
+    public String kategori_transaksi;
+    public String jumlah_transaksi;
+    public String deskripsi;
 
     public Transaksi (String pengeluaran, String pemasukan, String tanggal){
         this.pengeluaran = pengeluaran;
@@ -23,7 +23,7 @@ public class Transaksi {
         this.jenis_transaksi = jenis_transaksi;
         this.kategori_transaksi = kategori_transaksi;
         this.jumlah_transaksi = jumlah_transaksi;
-        this.deskripsi = jumlah_transaksi;
+        this.deskripsi = deskripsi;
     }
 
 }
