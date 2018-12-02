@@ -17,7 +17,7 @@ import java.util.Date;
  */
 public class FragmentListTransaksi extends Fragment implements View.OnClickListener {
     RecyclerView mRecyclerView;
-    AdapterListTransaksiDay mAdapter;
+    AdapterListTransaksi mAdapter;
 
     public Date tanggal_transaksi;
     public String jenis_transaksi;
@@ -75,7 +75,7 @@ public class FragmentListTransaksi extends Fragment implements View.OnClickListe
         }
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
-        mAdapter = new AdapterListTransaksiDay(view.getContext(), DataModel.getInstance().getListOfTransaction());
+        mAdapter = new AdapterListTransaksi(view.getContext(), DataModel.getInstance().getListOfTransaction());
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         return view;

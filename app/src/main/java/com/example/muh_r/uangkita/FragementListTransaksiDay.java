@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class FragementListTransaksiDay extends Fragment {
@@ -26,6 +28,7 @@ public class FragementListTransaksiDay extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private IHost iHost;
     View view;
 
     public FragementListTransaksiDay() {
@@ -69,10 +72,13 @@ public class FragementListTransaksiDay extends Fragment {
         transaksis.add(data1);
         transaksis.add(data2);
 
+        iHost = (IHost) getActivity();
+
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
-        mAdapter = new AdapterListTransaksiDay(view.getContext(), transaksis);
+        mAdapter = new AdapterListTransaksiDay(view.getContext(), transaksis, iHost);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+
         return view;
     }
 
