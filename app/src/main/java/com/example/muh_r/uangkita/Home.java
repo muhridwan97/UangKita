@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
@@ -27,6 +28,8 @@ public class Home extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    TextView pengeluaran,pemasukan;
+    int angkaPengeluaran,angkaPemasukan;
     View view;
     private PieChart pieChart;
 
@@ -68,10 +71,17 @@ public class Home extends Fragment {
         pieChart = (PieChart) view.findViewById(R.id.pie);
         ArrayList<PieEntry> entries = new ArrayList<>();
         ArrayList<String> labels = new ArrayList<String>();
+        pengeluaran = view.findViewById(R.id._tv_pengeluaran2);
+        pemasukan = view.findViewById(R.id._tv_pemasukan2);
 
+        pengeluaran.setText("Rp "+DataModel.getInstance().getTotalPengeluaran());
+        pemasukan.setText("Rp "+DataModel.getInstance().getTotalPemasukan());
 
-        entries.add(new PieEntry(40,"Pemasukkan"));
-        entries.add(new PieEntry(60,"Pengeluaran"));
+        angkaPengeluaran= Integer.valueOf(DataModel.getInstance().getTotalPengeluaran());
+        angkaPemasukan= Integer.valueOf(DataModel.getInstance().getTotalPemasukan());
+
+        entries.add(new PieEntry(angkaPemasukan,"Pemasukkan"));
+        entries.add(new PieEntry(angkaPengeluaran,"Pengeluaran"));
 
         PieDataSet dataSet=new PieDataSet(entries,"");
         PieData data = new PieData(dataSet);
@@ -79,8 +89,7 @@ public class Home extends Fragment {
         dataSet.setColors(new int[]{Color.GREEN,Color.RED});
         dataSet.setSliceSpace(5f);
         dataSet.setValueTextSize(14f);
-        pieChart.setUsePercentValues(true);
-        pieChart.setDrawHoleEnabled(false);
+        pieChart.setDrawEntryLabels(false);
         pieChart.setData(data);
         pieChart.invalidate();
 

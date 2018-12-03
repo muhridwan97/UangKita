@@ -19,7 +19,24 @@ public class DataModel {
         }
         return instance;
     }
-
+    public String getTotalPengeluaran(){
+        int totalPengeluaran=0;
+        for (Transaksi pengeluaran : listOfTransaction) {
+            if (pengeluaran.jenis_transaksi.equalsIgnoreCase("expense")) {
+                totalPengeluaran += (Integer.valueOf(pengeluaran.jumlah_transaksi));
+            }
+        }
+        return (String.valueOf(totalPengeluaran)) ;
+    }
+    public String getTotalPemasukan(){
+        int totalPemasukan=0;
+        for (Transaksi pengeluaran : listOfTransaction) {
+            if (pengeluaran.jenis_transaksi.equalsIgnoreCase("income")) {
+                totalPemasukan += (Integer.valueOf(pengeluaran.jumlah_transaksi));
+            }
+        }
+        return (String.valueOf(totalPemasukan)) ;
+    }
     public void setListOfTransaction(Transaksi transaction){
         listOfTransaction.add(transaction);
     }
