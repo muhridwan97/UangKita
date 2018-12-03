@@ -15,13 +15,15 @@ import java.util.Date;
 public class Uang_Kita_Main extends AppCompatActivity implements IHost{
 
     private TextView mTextMessage;
+    FragmentManager fm;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            FragmentManager fm = getSupportFragmentManager();
+
+
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     //mTextMessage.setText(R.string.title_home);
@@ -42,7 +44,8 @@ public class Uang_Kita_Main extends AppCompatActivity implements IHost{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uang__kita__main);
-
+        fm = getSupportFragmentManager();
+        fm.beginTransaction().replace(R.id.placeholder, new Home()).commit();
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -51,14 +54,14 @@ public class Uang_Kita_Main extends AppCompatActivity implements IHost{
     @Override
     public void openDetailBasedOnDate(Date date) {
         System.out.println(date);
-        FragmentManager fm = getSupportFragmentManager();
+        fm = getSupportFragmentManager();
         FragmentListTransaksi fragment2 = FragmentListTransaksi.getInstance();
         fm.beginTransaction().replace(R.id.placeholder, fragment2).commit();
     }
 
     @Override
     public void sendData(Date tangga_transaksil, String jenis_transaksi, String kategori_transaksi, String jumlah_transaksi, String deskripsi) {
-        FragmentManager fm = getSupportFragmentManager();
+        fm = getSupportFragmentManager();
         FragmentListTransaksi fragment2 = FragmentListTransaksi.newInstance(tangga_transaksil, jenis_transaksi,  kategori_transaksi,  jumlah_transaksi,  deskripsi);
         fm.beginTransaction().replace(R.id.placeholder, fragment2).commit();
     }

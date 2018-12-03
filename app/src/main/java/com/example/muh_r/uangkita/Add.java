@@ -45,6 +45,7 @@ public class Add extends Fragment {
     private Spinner _cmb_transaction;
     private Spinner _cmb_category;
     private Button _btn_save;
+    TextView pengeluaran,pemasukan;
 
     private OnFragmentInteractionListener mListener;
 
@@ -87,6 +88,12 @@ public class Add extends Fragment {
         _btn_save = rootView.findViewById(R.id._btn_save);
         _tv_total_transactions = rootView.findViewById(R.id._tv_total_transactions);
         _tv_descriptions = rootView.findViewById(R.id._tv_descriptions);
+
+        pengeluaran = rootView.findViewById(R.id._tv_pengeluaran);
+        pemasukan = rootView.findViewById(R.id._tv_pemasukan);
+
+        pengeluaran.setText("Rp "+DataModel.getInstance().getTotalPengeluaran());
+        pemasukan.setText("Rp "+DataModel.getInstance().getTotalPemasukan());
 
         iHost = (IHost) getActivity();
 
