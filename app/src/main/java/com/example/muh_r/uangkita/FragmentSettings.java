@@ -1,7 +1,10 @@
 package com.example.muh_r.uangkita;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +32,9 @@ public class FragmentSettings extends Fragment {
     CheckBox cbNotif;
     TextView etPersentase;
     Button btnApply;
+    private SharedPreferences mPreferences;
+    private SharedPreferences.Editor mEditor;
+
     public FragmentSettings() {
         // Required empty public constructor
     }
@@ -67,20 +73,47 @@ public class FragmentSettings extends Fragment {
         cbNotif=view.findViewById(R.id.cbNotif);
         etPersentase=view.findViewById(R.id.etPersentase);
         btnApply=view.findViewById(R.id.btnApply);
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(view.getContext());
+        mEditor = mPreferences.edit();
+        checkSharedPreferences();
+        String checkbox=DataModel.getInstance().getCheckBox();
+        String limit=DataModel.getInstance().getLimit();
 
-        BackgroundTask fs = BackgroundTask.getInstance();
-        Thread td = new Thread(fs);
-
+        if(DataModel.getInstance().getCheckBox().equalsIgnoreCase("True")){
+            cbNotif.setChecked(true);
+        }else {
+            cbNotif.setChecked(false);
+        }
+        etPersentase.setText(DataModel.getInstance().getLimit());
         btnApply.setOnClickListener(event->{
-            if (cbNotif.isChecked()){
-
-                td.start();
+            if(cbNotif.isChecked()){
+                DataModel.getInstance().setCheckBox("True");
+                mEditor.putString(getString(R.string.checkbox),"True");
+                mEditor.commit();
+                mEditor.putString(getString(R.string.limit),etPersentase.getText().toString());
+                mEditor.commit();
             }else {
-                fs.stop(false);
+                DataModel.getInstance().setCheckBox("False");
+                mEditor.putString(getString(R.string.checkbox),"False");
+                mEditor.commit();
+                mEditor.putString(getString(R.string.limit),etPersentase.getText().toString());
+                mEditor.commit();
             }
+            DataModel.getInstance().setLimit(etPersentase.getText().toString());
+
         });
+       // mPreferences = view.PreferenceManager.getDefaultSharedPreferences(this);
+        //mPreferences = view.getSharedPreferences("com.example.muh_r.uangkita",Context.MODE_PRIVATE);
         return view;
     }
+    private void checkSharedPreferences(){
+        String checkbox = mPreferences.getString(getString(R.string.checkbox),"False");
+        String limit = mPreferences.getString(getString(R.string.limit),"");
+
+        DataModel.getInstance().setCheckBox(checkbox);
+        DataModel.getInstance().setLimit(limit);
+    }
+
 
 
 
