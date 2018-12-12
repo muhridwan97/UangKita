@@ -36,7 +36,7 @@ public class DataModel {
     }
     public String getLimit(){
         return this.limit;
-        
+
     }
 
     public String getTotalPengeluaran(){

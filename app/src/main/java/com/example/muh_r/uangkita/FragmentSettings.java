@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -100,7 +101,7 @@ public class FragmentSettings extends Fragment {
                 mEditor.commit();
             }
             DataModel.getInstance().setLimit(etPersentase.getText().toString());
-
+            Toast.makeText(view.getContext(), "pengaturan tersimpan", Toast.LENGTH_LONG).show();
         });
        // mPreferences = view.PreferenceManager.getDefaultSharedPreferences(this);
         //mPreferences = view.getSharedPreferences("com.example.muh_r.uangkita",Context.MODE_PRIVATE);

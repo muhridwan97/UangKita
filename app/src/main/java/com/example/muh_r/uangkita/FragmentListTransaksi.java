@@ -103,26 +103,28 @@ public class FragmentListTransaksi extends Fragment implements View.OnClickListe
         if(tanggal_transaksi != null){
             DataModel.getInstance().setListOfTransaction(new Transaksi(tanggal_transaksi,jenis_transaksi,kategori_transaksi,jumlah_transaksi,deskripsi));
 
-            double limit = Integer.parseInt(DataModel.getInstance().getTotalPemasukan()) * 0.6;
+            double percentLimit = 0.0;
+            if (!DataModel.getInstance().getLimit().isEmpty()){
+                percentLimit = Integer.parseInt(DataModel.getInstance().getLimit()) * 0.01;
+                System.out.println(percentLimit);
+            }
+
+            double limit = Integer.parseInt(DataModel.getInstance().getTotalPemasukan()) * percentLimit;
             double pengeluaran = Integer.parseInt(DataModel.getInstance().getTotalPengeluaran());
+            System.out.println(limit);
 
-            System.out.println("Limit1 :" + limit);
-            System.out.println("pengeluaran1 : " + pengeluaran);
+            if (pengeluaran > limit) {
+                if (DataModel.getInstance().getCheckBox().equalsIgnoreCase("true")){
+                    NotificationManager mNotifyManager = (NotificationManager) getContext().getSystemService(NOTIFICATION_SERVICE);
+                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this.getActivity(), "0")
+                            .setSmallIcon(R.drawable.ic_home_black_24dp)
+                            .setContentTitle("Uang Limit")
+                            .setContentText("Uang sudah mencapt limit")
+                            .setPriority(NotificationCompat.PRIORITY_HIGH);
 
-            if (pengeluaran >= limit) {
-                System.out.println("limit");
-                System.out.println("Limit2 :" + limit);
-                System.out.println("pengeluaran2:" + pengeluaran);
-                NotificationManager mNotifyManager = (NotificationManager) getContext().getSystemService(NOTIFICATION_SERVICE);
-                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this.getActivity(), "0")
-                        .setSmallIcon(R.drawable.ic_home_black_24dp)
-                        .setContentTitle("Uang Limit")
-                        .setContentText("Uang sudah mencapt limit")
-                        .setPriority(NotificationCompat.PRIORITY_HIGH);
-
-                Notification mynotif = mBuilder.build();
-                mNotifyManager.notify(0,  mynotif);
-
+                    Notification mynotif = mBuilder.build();
+                    mNotifyManager.notify(0,  mynotif);
+                }
             }
         }
 
