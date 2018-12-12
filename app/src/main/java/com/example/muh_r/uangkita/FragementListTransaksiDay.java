@@ -67,10 +67,19 @@ public class FragementListTransaksiDay extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_fragement_list_transaksi_day, container, false);
-        Transaksi data1 = new Transaksi("Rp 150.000", "Rp 1.000.000","24 OKT");
-        Transaksi data2 = new Transaksi("Rp 50.000", "Rp 100.000","25 OKT");
-        transaksis.add(data1);
-        transaksis.add(data2);
+
+        DataModel.getInstance().getListOfTransactionGroupByDays().entrySet().forEach(transactionPerDay ->{
+            String pengeluaran = transactionPerDay.getValue().get(0);
+            String pemasukan = transactionPerDay.getValue().get(1);
+            String tanggal = transactionPerDay.getKey();
+            transaksis.add(new Transaksi(pengeluaran, pemasukan,tanggal));
+        });
+
+
+        //Transaksi data1 = new Transaksi("Rp 150.000", "Rp 1.000.000","24 OKT");
+        //Transaksi data2 = new Transaksi("Rp 50.000", "Rp 100.000","25 OKT");
+        //transaksis.add(data1);
+        //transaksis.add(data2);
 
         iHost = (IHost) getActivity();
 
