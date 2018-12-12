@@ -19,8 +19,6 @@ public class Uang_Kita_Main extends AppCompatActivity implements IHost{
 
     private TextView mTextMessage;
     FragmentManager fm;
-    private SharedPreferences mPreferences;
-    private SharedPreferences.Editor mEditor;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -59,23 +57,9 @@ public class Uang_Kita_Main extends AppCompatActivity implements IHost{
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 
-        mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mEditor = mPreferences.edit();
-        checkSharedPreferences();
-        String checkbox=DataModel.getInstance().getCheckBox();
-        String limit=DataModel.getInstance().getLimit();
-        mEditor.putString(getString(R.string.checkbox),checkbox);
-        mEditor.commit();
-        mEditor.putString(getString(R.string.limit),limit);
-        mEditor.commit();
-    }
-    private void checkSharedPreferences(){
-        String checkbox = mPreferences.getString(getString(R.string.checkbox),"False");
-        String limit = mPreferences.getString(getString(R.string.limit),"");
 
-        DataModel.getInstance().setCheckBox(checkbox);
-        DataModel.getInstance().setLimit(limit);
     }
+
 
     @Override
     public void openDetailBasedOnDate(Date date) {
