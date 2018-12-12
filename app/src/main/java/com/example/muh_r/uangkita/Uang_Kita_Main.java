@@ -1,6 +1,7 @@
 package com.example.muh_r.uangkita;
 
 
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -34,6 +35,9 @@ public class Uang_Kita_Main extends AppCompatActivity implements IHost{
                     return true;
                 case R.id.navigation_list_transactions:
                     fm.beginTransaction().replace(R.id.placeholder, new FragementListTransaksiDay()).commit();
+                    return true;
+                case R.id.navigation_setting_transactions:
+                    fm.beginTransaction().replace(R.id.placeholder, new FragmentSettings()).commit();
                     return true;
             }
             return false;
