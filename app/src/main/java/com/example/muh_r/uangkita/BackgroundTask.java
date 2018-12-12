@@ -23,7 +23,7 @@ public class BackgroundTask  implements Runnable {
         public void run() {
             while (isRunning) {
                 if (persetase<pengeluaran){
-
+                    
                 }
             }
         }
