@@ -15,12 +15,30 @@ public class DataModel {
     private DataModel(){}
     private ArrayList<Transaksi> listOfTransaction = new ArrayList<>();
 
+    //setting
+    private String checkBox, limit;
+
     public static synchronized DataModel getInstance() {
         if (instance == null) {
             instance = new DataModel();
         }
         return instance;
     }
+
+    public void setCheckBox(String checkBox){
+        this.checkBox = checkBox;
+    }
+    public void setLimit(String limit){
+        this.limit = limit;
+    }
+    public String getCheckBox(){
+        return this.checkBox;
+    }
+    public String getLimit(){
+        return this.limit;
+        
+    }
+
     public String getTotalPengeluaran(){
         int totalPengeluaran=0;
         for (Transaksi pengeluaran : listOfTransaction) {

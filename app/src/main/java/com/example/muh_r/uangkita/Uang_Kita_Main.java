@@ -1,6 +1,8 @@
 package com.example.muh_r.uangkita;
 
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -53,7 +55,11 @@ public class Uang_Kita_Main extends AppCompatActivity implements IHost{
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+
+
     }
+
 
     @Override
     public void openDetailBasedOnDate(Date date) {

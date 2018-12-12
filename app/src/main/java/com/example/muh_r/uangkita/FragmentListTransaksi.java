@@ -1,8 +1,11 @@
 package com.example.muh_r.uangkita;
 
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.Date;
+
+import static android.content.Context.NOTIFICATION_SERVICE;
 
 
 /**
@@ -54,6 +59,31 @@ public class FragmentListTransaksi extends Fragment implements View.OnClickListe
         return fragment;
     }
 
+    private void notif(){
+
+        double limit = Integer.parseInt(DataModel.getInstance().getTotalPemasukan()) * 0.6;
+        double pengeluaran = Integer.parseInt(DataModel.getInstance().getTotalPengeluaran());
+
+        System.out.println("Limit1 :" + limit);
+        System.out.println("pengeluaran1 : " + pengeluaran);
+
+        if (pengeluaran >= limit) {
+            System.out.println("limit");
+            System.out.println("Limit2 :" + limit);
+            System.out.println("pengeluaran2:" + pengeluaran);
+            NotificationManager mNotifyManager = (NotificationManager) getContext().getSystemService(NOTIFICATION_SERVICE);
+            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this.getActivity(), "0")
+                    .setSmallIcon(R.drawable.ic_home_black_24dp)
+                    .setContentTitle("Uang Limit")
+                    .setContentText("Uang sudah mencapt limit")
+                    .setPriority(NotificationCompat.PRIORITY_HIGH);
+
+            Notification mynotif = mBuilder.build();
+            mNotifyManager.notify(0,  mynotif);
+
+        }
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +102,28 @@ public class FragmentListTransaksi extends Fragment implements View.OnClickListe
         view = inflater.inflate(R.layout.fragment_list_transaksi, container, false);
         if(tanggal_transaksi != null){
             DataModel.getInstance().setListOfTransaction(new Transaksi(tanggal_transaksi,jenis_transaksi,kategori_transaksi,jumlah_transaksi,deskripsi));
+
+            double limit = Integer.parseInt(DataModel.getInstance().getTotalPemasukan()) * 0.6;
+            double pengeluaran = Integer.parseInt(DataModel.getInstance().getTotalPengeluaran());
+
+            System.out.println("Limit1 :" + limit);
+            System.out.println("pengeluaran1 : " + pengeluaran);
+
+            if (pengeluaran >= limit) {
+                System.out.println("limit");
+                System.out.println("Limit2 :" + limit);
+                System.out.println("pengeluaran2:" + pengeluaran);
+                NotificationManager mNotifyManager = (NotificationManager) getContext().getSystemService(NOTIFICATION_SERVICE);
+                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this.getActivity(), "0")
+                        .setSmallIcon(R.drawable.ic_home_black_24dp)
+                        .setContentTitle("Uang Limit")
+                        .setContentText("Uang sudah mencapt limit")
+                        .setPriority(NotificationCompat.PRIORITY_HIGH);
+
+                Notification mynotif = mBuilder.build();
+                mNotifyManager.notify(0,  mynotif);
+
+            }
         }
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
