@@ -68,14 +68,20 @@ public class FragmentSettings extends Fragment {
         etPersentase=view.findViewById(R.id.etPersentase);
         btnApply=view.findViewById(R.id.btnApply);
 
+        BackgroundTask fs = BackgroundTask.getInstance();
+        Thread td = new Thread(fs);
+
         btnApply.setOnClickListener(event->{
             if (cbNotif.isChecked()){
-                BackgroundTask fs = new BackgroundTask(etPersentase,true);
+                
+                td.start();
             }else {
-                BackgroundTask fs = new BackgroundTask(etPersentase,false);
+                fs.stop(false);
             }
         });
         return view;
     }
+
+
 
 }
