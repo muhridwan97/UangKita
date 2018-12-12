@@ -73,7 +73,7 @@ public class FragmentSettings extends Fragment {
 
         btnApply.setOnClickListener(event->{
             if (cbNotif.isChecked()){
-                
+
                 td.start();
             }else {
                 fs.stop(false);

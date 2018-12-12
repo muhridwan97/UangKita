@@ -1,11 +1,18 @@
 package com.example.muh_r.uangkita;
 
 import android.app.DatePickerDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +26,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import static android.content.Context.NOTIFICATION_SERVICE;
 
 
 /**
@@ -45,6 +54,7 @@ public class Add extends Fragment {
     private Spinner _cmb_transaction;
     private Spinner _cmb_category;
     private Button _btn_save;
+    private UangKita_BroadcastReceiver br;
     TextView pengeluaran,pemasukan;
 
     private OnFragmentInteractionListener mListener;
@@ -100,6 +110,8 @@ public class Add extends Fragment {
         combobox(rootView);
         datePicker(rootView);
         save();
+
+
         return rootView;
     }
 
